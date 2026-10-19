@@ -51,7 +51,7 @@ func TestHookAntigravityBoundsStdinWithoutInjectingOnEveryTurn(t *testing.T) {
 		if took > 3*time.Second {
 			t.Errorf("the hook waited %s on a held-open pipe", took)
 		}
-	case <-time.After(5 * time.Second):
+	case <-time.After(2 * time.Minute): // only a hang waits this long (#5356)
 		t.Fatal("the hook is still waiting for the host to close stdin")
 	}
 
